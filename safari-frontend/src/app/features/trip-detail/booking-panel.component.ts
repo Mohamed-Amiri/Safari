@@ -14,7 +14,7 @@ import { AvailabilityBadgeComponent } from '../../shared/ui/availability/availab
 import { MoneyPipe } from '../../shared/ui/pipes/money.pipe';
 import { IsoDatePipe } from '../../shared/ui/pipes/date.pipe';
 import { availMeta } from '../../shared/ui/availability/availability.util';
-import { heartSvg } from '../../shared/ui/util/display.util';
+import { HeartIconComponent } from '../../shared/ui/heart/heart-icon.component';
 
 /**
  * Sticky booking card. Renders one of four states (prototype bookingPanel()):
@@ -28,7 +28,7 @@ import { heartSvg } from '../../shared/ui/util/display.util';
 @Component({
   selector: 'app-booking-panel',
   standalone: true,
-  imports: [ReactiveFormsModule, RatingScoreComponent, AvailabilityBadgeComponent, MoneyPipe, IsoDatePipe, RouterLink],
+  imports: [ReactiveFormsModule, RatingScoreComponent, AvailabilityBadgeComponent, MoneyPipe, IsoDatePipe, RouterLink, HeartIconComponent],
   template: `
     <aside class="bookcard">
       <div class="inner">
@@ -54,7 +54,7 @@ import { heartSvg } from '../../shared/ui/util/display.util';
             <button class="btn btn-cta btn-block" disabled>Sold out</button>
             <div class="help" style="margin-top:10px">Cancellations release seats instantly — save this trip to check back.</div>
             <div class="actions">
-              <button class="btn btn-ghost btn-block" type="button" (click)="toggleSave()"><span [innerHTML]="heart(faved())"></span> {{ faved() ? 'Saved' : 'Save this trip' }}</button>
+              <button class="btn btn-ghost btn-block" type="button" (click)="toggleSave()"><app-heart [filled]="faved()" /> {{ faved() ? 'Saved' : 'Save this trip' }}</button>
             </div>
           } @else {
             <form [formGroup]="form" (ngSubmit)="book()">
@@ -68,7 +68,7 @@ import { heartSvg } from '../../shared/ui/util/display.util';
               </div>
               <div class="actions">
                 <button class="btn btn-cta btn-block" type="submit">Reserve my seat</button>
-                <button class="btn btn-ghost btn-block" type="button" (click)="toggleSave()">{{ heart(faved()) }} {{ faved() ? 'Saved' : 'Save for later' }}</button>
+                <button class="btn btn-ghost btn-block" type="button" (click)="toggleSave()"><app-heart [filled]="faved()" /> {{ faved() ? 'Saved' : 'Save for later' }}</button>
               </div>
             </form>
           }
@@ -81,7 +81,7 @@ import { heartSvg } from '../../shared/ui/util/display.util';
           </div>
           <div class="actions">
             <button class="btn btn-cta btn-block" type="button" [disabled]="soldOut()" (click)="needLogin('Sign in to reserve your seat')">{{ soldOut() ? 'Sold out' : 'Sign in to book' }}</button>
-            <button class="btn btn-ghost btn-block" type="button" (click)="needLogin('Sign in to save trips')">{{ heart(false) }} Save for later</button>
+            <button class="btn btn-ghost btn-block" type="button" (click)="needLogin('Sign in to save trips')"><app-heart [filled]="false" /> Save for later</button>
           </div>
           <div class="help" style="margin-top:12px">New here? <a routerLink="/register">Create a free account</a> — it takes 30 seconds.</div>
         }
@@ -169,7 +169,6 @@ export class BookingPanelComponent implements OnChanges {
   }
 
   protected ref(id: number): string { return 'RSV-' + String(id).padStart(4, '0'); }
-  protected heart(filled: boolean): string { return heartSvg(filled); }
 
   protected book(): void {
     if (this.form.invalid) return;

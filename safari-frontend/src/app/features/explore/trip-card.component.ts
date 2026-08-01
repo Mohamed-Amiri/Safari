@@ -8,8 +8,9 @@ import { AvailabilityBadgeComponent } from '../../shared/ui/availability/availab
 import { ImageFallbackDirective } from '../../shared/ui/image-fallback/image-fallback.directive';
 import { MoneyPipe } from '../../shared/ui/pipes/money.pipe';
 import { IsoDateShortPipe } from '../../shared/ui/pipes/date.pipe';
-import { daysBetween, heartSvg, starGlyphs } from '../../shared/ui/util/display.util';
+import { daysBetween, starGlyphs } from '../../shared/ui/util/display.util';
 import { availMeta } from '../../shared/ui/availability/availability.util';
+import { HeartIconComponent } from '../../shared/ui/heart/heart-icon.component';
 
 /**
  * Trip card — used by Explore, Saved, and the live admin form preview (preview mode strips
@@ -23,7 +24,7 @@ import { availMeta } from '../../shared/ui/availability/availability.util';
   standalone: true,
   imports: [
     RouterLink, RatingScoreComponent, AvailabilityBadgeComponent, ImageFallbackDirective,
-    MoneyPipe, IsoDateShortPipe
+    MoneyPipe, IsoDateShortPipe, HeartIconComponent
   ],
   template: `
     <article class="tcard">
@@ -39,9 +40,8 @@ import { availMeta } from '../../shared/ui/availability/availability.util';
         <span class="chip dark cat">{{ trip.category || 'Trip' }}</span>
         @if (!preview && signedIn()) {
           <button class="favbtn" (click)="toggleFav($event)"
-                  [innerHTML]="heart(faved())"
                   [attr.title]="faved() ? 'Remove from saved' : 'Save trip'"
-                  aria-label="Save trip"></button>
+                  aria-label="Save trip"><app-heart [filled]="faved()" /></button>
         }
       </div>
       <div class="tbody">
@@ -110,7 +110,6 @@ export class TripCardComponent {
       ? (daysBetween(this.trip.startDate, this.trip.endDate) + ' days')
       : 'Dates flexible';
   }
-  protected heart(filled: boolean): string { return heartSvg(filled); }
   protected starGlyphs = starGlyphs;
 
   /** prevent card-link navigation when clicking the heart; the host (explore/detail/saved)
