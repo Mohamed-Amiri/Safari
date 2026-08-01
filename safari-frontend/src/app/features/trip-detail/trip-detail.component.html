@@ -1,0 +1,57 @@
+@if (loading()) {
+  <div class="wrap">
+    <div class="skel" style="height:44px;max-width:420px;margin:30px 0 0"></div>
+    <div class="skel" style="aspect-ratio:21/8.5;border-radius:6px;margin-top:18px"></div>
+  </div>
+} @else if (notFound()) {
+  <app-not-found />
+} @else if (error()) {
+  <div class="wrap"><div class="bigcode">
+    <div class="code">¯\\_(:/)_/¯</div>
+    <h2>We couldn't load this trip</h2>
+    <p>{{ error() }}</p>
+    <a class="btn btn-primary" routerLink="/">Back to Explore</a>
+  </div></div>
+} @else {
+  @if (trip(); as t) {
+  <div class="wrap">
+    <div class="crumb">
+      <a routerLink="/">Explore</a> / {{ t.country || 'Various' }} /
+      <span style="color:var(--ink2)">{{ t.destination }}</span>
+    </div>
+    <div class="dethead">
+      <div>
+        <h1>{{ t.destination }}</h1>
+        <div class="sub">
+          <app-rating-score [rating]="t.averageRating ?? null" />
+          @if (t.reviewCount) { <span>{{ t.reviewCount }} review{{ t.reviewCount > 1 ? 's' : '' }}</span> }
+          @else { <span>New departure</span> }
+          <span class="chip">{{ t.category || 'Trip' }}</span>
+          <span class="mono" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase">{{ t.country || '' }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="detmedia"><img [src]="t.imageUrl || ''" [alt]="t.destination" appImageFallback></div>
+    <div class="facts">
+      <div class="cell"><div class="k">Departure</div><div class="v">{{ t.startDate | isoDate }}</div></div>
+      <div class="cell"><div class="k">Return</div><div class="v">{{ t.endDate | isoDate }}</div></div>
+      <div class="cell"><div class="k">Duration</div><div class="v">{{ duration }}</div></div>
+      <div class="cell"><div class="k">Group size</div><div class="v">Max {{ t.totalSeats }}</div></div>
+      <div class="cell">
+        <div class="k">Seats left</div>
+        <div class="v" [style.color]="seatsColor(t.availableSeats)">{{ t.availableSeats }} of {{ t.totalSeats }}</div>
+      </div>
+    </div>
+    <div class="detbody">
+      <div class="detmain">
+        <section class="about">
+          <div class="sechead"><h2>About this trip</h2><span class="overline">Trip №{{ (t.id).toString().padStart(3, '0') }}</span></div>
+          <p>{{ t.description || 'Details coming soon.' }}</p>
+        </section>
+        <app-reviews [trip]="t" [reviews]="reviews()" (mutated)="refresh()" />
+      </div>
+      <app-booking-panel [trip]="t" (mutated)="refresh()" />
+    </div>
+  </div>
+  }
+}
