@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../core/auth/auth.service';
 import { ApiError } from '../../core/api/api-error';
 import { FieldErrorComponent } from '../../shared/ui/field-error/field-error.component';
+import { ToastService } from '../../shared/ui/toast/toast.service';
 import { LOGO_SVG } from '../../shared/ui/util/display.util';
 
 @Component({
@@ -53,7 +54,7 @@ import { LOGO_SVG } from '../../shared/ui/util/display.util';
         <div class="scrim"></div>
         <div class="cap">
           <div class="q">"Booked Tuesday. On the trail by Friday. The reserve-now-pay-later model is how all travel should work."</div>
-          <div class="loc">Sofia L. · Traveled the Dolomites 2026</div>
+          <div class="loc">Sofia L. · Traveled to Marrakech 2026</div>
         </div>
       </div>
     </div>
@@ -67,7 +68,7 @@ import { LOGO_SVG } from '../../shared/ui/util/display.util';
     .auth .pane .overline{margin-bottom:12px}
     .auth .pane h1{font-size:31px;margin-bottom:8px}
     .auth .pane .lead{color:var(--muted);font-size:14.5px;margin-bottom:26px}
-    .auth .photo{position:relative;background-image:url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?fm=jpg&q=60&w=1600&auto=format&fit=crop');background-size:cover;background-position:center;min-height:420px}
+    .auth .photo{position:relative;background-image:url('/auth/register.jpg');background-size:cover;background-position:center;min-height:420px}
     .auth .photo .scrim{position:absolute;inset:0;background:linear-gradient(12deg,rgba(13,26,18,.72),rgba(13,26,18,.08) 55%)}
     .auth .photo .cap{position:absolute;left:34px;bottom:30px;color:#fff;z-index:2;max-width:420px}
     .auth .photo .cap .q{font-family:var(--ff-d);font-size:22px;font-weight:650;line-height:1.3}
@@ -86,6 +87,7 @@ export class RegisterComponent {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private fb = inject(FormBuilder);
+  private toast = inject(ToastService);
 
   protected logo = LOGO_SVG + 'Voyage';
   protected returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '';
@@ -118,11 +120,19 @@ export class RegisterComponent {
     if (this.form.invalid) { this.form.markAllAsTouched(); return; }
     this.submitting.set(true);
     this.auth.register(this.form.value).subscribe({
-      next: res => {
-        this.auth.storeSession(res);
-        // Auto sign-in → new accounts are always ROLE_USER, so land on the user dashboard
-        // (unless a returnUrl was pending, e.g. they tried to access a protected page first).
-        this.router.navigateByUrl(this.returnUrl || '/dashboard');
+      next: () => {
+        // No auto sign-in: registration creates the account but the user must sign in
+        // with their credentials to start an authenticated session. Pre-fill the email
+        // and carry any pending returnUrl into the login flow.
+        const email = this.form.value.email as string;
+        this.toast.success('Account created — sign in to continue');
+        this.router.navigate(['/login'], {
+          queryParams: {
+            email,
+            ...(this.returnUrl ? { returnUrl: this.returnUrl } : {}),
+            flash: `Welcome aboard — your account is ready. Sign in below to start booking.`
+          }
+        });
       },
       error: (e: ApiError) => {
         this.submitting.set(false);

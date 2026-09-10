@@ -49,7 +49,7 @@ import { LOGO_SVG } from '../shared/ui/util/display.util';
         </div>
         <div class="base">
           <span>© 2026 Voyage — Your next trip, reserved</span>
-          <span>Live seat availability · Prices in USD</span>
+          <span>Live seat availability · Prices in USD (MAD shown)</span>
         </div>
       </div>
     </footer>

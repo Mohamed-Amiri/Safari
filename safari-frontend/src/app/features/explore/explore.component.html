@@ -58,7 +58,7 @@
       </div>
 
       <div class="fgroup">
-        <div class="ftitle">Price per person (USD)</div>
+        <div class="ftitle">Price per person (USD · MAD shown)</div>
         <div class="pricerow">
           <input class="inp" type="number" min="0" formControlName="minPrice" placeholder="Min">
           <span>—</span>
@@ -71,7 +71,7 @@
       <div class="results-head">
         <div>
           <h2>Available trips</h2>
-          <div class="cnt">{{ totalElements }} TRIP{{ totalElements === 1 ? '' : 'S' }} · PRICES IN USD PER PERSON</div>
+          <div class="cnt">{{ totalElements }} TRIP{{ totalElements === 1 ? '' : 'S' }} · PRICES IN USD PER PERSON (MAD SHOWN)</div>
         </div>
         <div style="display:flex;gap:10px;align-items:center">
           <button class="btn btn-ghost btn-sm filter-toggle" type="button" (click)="toggleFilters()">Filters</button>

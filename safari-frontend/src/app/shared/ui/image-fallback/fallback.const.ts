@@ -6,6 +6,6 @@ export const FALLBACK_IMG =
     `<rect width="900" height="600" fill="#1e4632"/>` +
     `<circle cx="450" cy="330" r="110" fill="#e0a33c"/>` +
     `<rect x="0" y="330" width="900" height="270" fill="#12281c"/>` +
-    `<text x="450" y="560" text-anchor="middle" font-family="monospace" font-size="22" letter-spacing="6" fill="#8aa392">SAFARI</text>` +
+    `<text x="450" y="560" text-anchor="middle" font-family="monospace" font-size="22" letter-spacing="6" fill="#8aa392">VOYAGE</text>` +
     `</svg>`
   );

@@ -67,6 +67,7 @@ import { NotFoundComponent } from '../../errors/not-found.component';
             <div class="field">
               <label>Price (USD) *</label>
               <input class="inp" [class.error]="fieldError('price')" type="number" min="1" step="1" formControlName="price" placeholder="2450">
+              <div class="hint">Entered in USD — MAD shown to travelers is derived at a fixed rate.</div>
               @if (fieldError('price')) { <div class="err">{{ fieldError('price') }}</div> }
             </div>
             <div class="field">

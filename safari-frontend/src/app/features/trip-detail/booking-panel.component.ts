@@ -33,7 +33,7 @@ import { HeartIconComponent } from '../../shared/ui/heart/heart-icon.component';
     <aside class="bookcard">
       <div class="inner">
         <div class="pricebig"><span class="amt">{{ trip.price | money }}</span><span class="per">/ person</span></div>
-        <div class="prow"><span class="mono" style="font-size:10px;letter-spacing:.1em;color:var(--muted)">FIXED PRICE · USD</span>
+        <div class="prow"><span class="mono" style="font-size:10px;letter-spacing:.1em;color:var(--muted)">FIXED PRICE · USD (MAD SHOWN)</span>
           <app-rating-score [rating]="trip.averageRating ?? null" />
         </div>
         <hr>

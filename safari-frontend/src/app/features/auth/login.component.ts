@@ -41,7 +41,7 @@ import { LOGO_SVG } from '../../shared/ui/util/display.util';
         <div class="scrim"></div>
         <div class="cap">
           <div class="q">"The best stories aren't filed by category — they're filed by place."</div>
-          <div class="loc">Amalfi Coast · Italy</div>
+          <div class="loc">Sahara · Morocco</div>
         </div>
       </div>
     </div>
@@ -55,7 +55,7 @@ import { LOGO_SVG } from '../../shared/ui/util/display.util';
     .auth .pane .overline{margin-bottom:12px}
     .auth .pane h1{font-size:31px;margin-bottom:8px}
     .auth .pane .lead{color:var(--muted);font-size:14.5px;margin-bottom:26px}
-    .auth .photo{position:relative;background-image:url('https://images.unsplash.com/photo-1545569310-3df6c1f6b2d0?fm=jpg&q=60&w=1600&auto=format&fit=crop');background-size:cover;background-position:center;min-height:420px}
+    .auth .photo{position:relative;background-image:url('/auth/login.jpg');background-size:cover;background-position:center;min-height:420px}
     .auth .photo .scrim{position:absolute;inset:0;background:linear-gradient(12deg,rgba(13,26,18,.72),rgba(13,26,18,.08) 55%)}
     .auth .photo .cap{position:absolute;left:34px;bottom:30px;color:#fff;z-index:2;max-width:420px}
     .auth .photo .cap .q{font-family:var(--ff-d);font-size:22px;font-weight:650;line-height:1.3}
@@ -86,8 +86,9 @@ export class LoginComponent {
   protected showPw = signal(false);
   protected fieldErrors: Record<string, string> = {};
 
+  /** After register we redirect here with ?email= pre-filled so the user just types a password. */
   protected form: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: [this.route.snapshot.queryParamMap.get('email') ?? '', [Validators.required, Validators.email]],
     password: ['', [Validators.required]]
   });
 
