@@ -1,0 +1,132 @@
+<section class="hero">
+  <div class="bg"></div>
+  <div class="scrim"></div>
+  <div class="wrap">
+    <div class="kicker">Curated small-group travel · Est. 2024</div>
+    <h1>Find your next trip. Reserve your seat today.</h1>
+    <p class="sub">Small-group journeys to destinations worth the journey, with live seat availability and free cancellation on every booking.</p>
+    <form class="searchbar" [formGroup]="filters" (ngSubmit)="load(); scrollToResults()">
+      <div class="cell"><label for="hs-kw">Where to?</label><input id="hs-kw" formControlName="keyword" placeholder="City, country, or trip name…"></div>
+      <div class="cell"><label for="hs-cat">Trip style</label>
+        <select id="hs-cat" formControlName="category">
+          <option value="">All styles</option>
+          @for (c of categories; track c) { <option [value]="c">{{ c }}</option> }
+        </select>
+      </div>
+      <div class="cell"><label for="hs-max">Budget / person</label>
+        <select id="hs-max" formControlName="maxPrice">
+          <option value="">Any budget</option>
+          <option value="2500">Up to $2,500</option>
+          <option value="3500">Up to $3,500</option>
+          <option value="5000">Up to $5,000</option>
+        </select>
+      </div>
+      <button class="btn btn-cta go" type="submit">Search trips</button>
+    </form>
+  </div>
+</section>
+
+<div class="trust"><div class="wrap">
+  <span><b>{{ totalTrips() }}</b> curated trips</span>
+  <span><b>Free</b> cancellation</span>
+  <span><b>No payment</b> to reserve</span>
+</div></div>
+
+<div class="wrap">
+  <div class="catalog">
+    <aside class="filters" [formGroup]="filters" [class.open]="filtersOpen()">
+      <div class="fhead"><h2>Filter results</h2><button class="linklike" type="button" (click)="clearAll()">Clear all</button></div>
+
+      <div class="fgroup">
+        <div class="ftitle">Destination</div>
+        <input class="inp" style="height:38px;font-size:13.5px" formControlName="destination" placeholder="e.g. Coast — press Enter">
+      </div>
+
+      <div class="fgroup">
+        <div class="ftitle">Country</div>
+        <select class="inp" style="height:38px;font-size:13.5px" formControlName="country">
+          <option value="">All countries</option>
+          @for (c of countries(); track c) { <option [value]="c">{{ c }}</option> }
+        </select>
+        <div class="hint">Derived from loaded trips — the API has no facets endpoint yet</div>
+      </div>
+
+      <div class="fgroup">
+        <div class="ftitle">Trip style</div>
+        <label class="radio"><input type="radio" formControlName="category" value="">All styles</label>
+        @for (c of categories; track c) { <label class="radio"><input type="radio" formControlName="category" [value]="c">{{ c }}</label> }
+      </div>
+
+      <div class="fgroup">
+        <div class="ftitle">Price per person (USD · MAD shown)</div>
+        <div class="pricerow">
+          <input class="inp" type="number" min="0" formControlName="minPrice" placeholder="Min">
+          <span>—</span>
+          <input class="inp" type="number" min="0" formControlName="maxPrice" placeholder="Max">
+        </div>
+      </div>
+    </aside>
+
+    <div>
+      <div class="results-head">
+        <div>
+          <h2>Available trips</h2>
+          <div class="cnt">{{ totalElements }} TRIP{{ totalElements === 1 ? '' : 'S' }} · PRICES IN USD PER PERSON (MAD SHOWN)</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button class="btn btn-ghost btn-sm filter-toggle" type="button" (click)="toggleFilters()">Filters</button>
+          <div class="sortrow"><label for="sortsel">Sort</label>
+            <select class="inp" id="sortsel" style="height:36px;width:auto;font-size:13px" [value]="sort()" (change)="setSort($any($event.target).value)">
+              <option value="createdAt,desc">Newest</option>
+              <option value="price,asc">Price: low to high</option>
+              <option value="price,desc">Price: high to low</option>
+              <option value="startDate,asc">Departing soonest</option>
+              <option value="destination,asc">Destination A–Z</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      @if (activeChips().length) {
+        <div class="fchips">
+          @for (chip of activeChips(); track chip.field) {
+            <span class="chip">{{ chip.label }}<button type="button" (click)="clearFilter(chip.field)" aria-label="Remove filter">✕</button></span>
+          }
+        </div>
+      }
+
+      <div class="catchips">
+        @for (c of categories; track c) {
+          <button class="chip clickable" [class.on]="filters.value.category === c" type="button" (click)="toggleCategory(c)">{{ c }}</button>
+        }
+      </div>
+
+      @if (loading()) {
+        <div class="trip-grid">
+          @for (i of [1,2,3,4,5,6]; track i) { <app-skel-card /> }
+        </div>
+      } @else if (error()) {
+        <app-empty-state overline="COULDN'T LOAD" title="We couldn't reach the catalogue" [body]="error() ?? ''">
+          <button class="btn btn-ghost" type="button" (click)="load()">Try again</button>
+        </app-empty-state>
+      } @else if (!results().length) {
+        <app-empty-state overline="NO MATCHES" title="No trips match those filters"
+          body="Try widening your budget or clearing a filter — new departures are added all the time.">
+          <button class="btn btn-ghost" type="button" (click)="clearAll()">Clear all filters</button>
+        </app-empty-state>
+      } @else {
+        <div class="trip-grid">
+          @for (t of results(); track t.id) { <app-trip-card [trip]="t" /> }
+        </div>
+        <app-pagination [total]="totalElements" [size]="size" [page]="page()" (pageChange)="gotoPage($event)" />
+      }
+    </div>
+  </div>
+</div>
+
+<section class="how"><div class="wrap">
+  <div class="lead">Booking, the simple way</div>
+  <div class="step"><div class="n">01 — FIND</div><b>Compare real departures</b><p>Every trip shows live seat availability, verified traveler ratings and a fixed per-person price.</p></div>
+  <div class="step"><div class="n">02 — RESERVE</div><b>Hold your seat free</b><p>Pick a travel date and reserve instantly. No payment is taken today, and cancellation is always free.</p></div>
+  <div class="step"><div class="n">03 — TRAVEL</div><b>Go with experts</b><p>Small groups, licensed local guides, and a booking reference your whole trip hangs off.</p></div>
+</div></section>

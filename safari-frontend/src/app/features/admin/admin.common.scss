@@ -1,0 +1,68 @@
+/* Shared admin console styles — ported from prototype src/01-head.html (.adm-head, .statgrid,
+   .admpanel, .occrow, .table, .seatbar, .tripform, .prevbox). */
+.adm-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:24px;flex-wrap:wrap}
+.adm-head h1{font-size:26px;font-weight:750}
+.adm-head .sub{font-family:var(--ff-m);font-size:11px;color:var(--muted);margin-top:6px;letter-spacing:.05em;text-transform:uppercase}
+
+.statgrid{display:grid;grid-template-columns:repeat(4,1fr);background:var(--paper);border:1px solid var(--line2);border-radius:6px;overflow:hidden;margin-bottom:26px}
+.stat{padding:18px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat:nth-child(4n){border-right:none}
+.stat:nth-child(n+5){border-bottom:none}
+.stat .k{font-family:var(--ff-m);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.stat .v{font-family:var(--ff-d);font-weight:800;font-size:30px;letter-spacing:-.02em;line-height:1}
+.stat .d{font-size:11.5px;color:var(--faint);margin-top:6px}
+.stat.note{display:flex;align-items:center}
+.stat.note p{font-family:var(--ff-m);font-size:10px;color:var(--faint);line-height:1.8;letter-spacing:.03em;text-transform:uppercase}
+
+.admgrid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.admpanel{background:var(--paper);border:1px solid var(--line2);border-radius:6px;padding:20px 22px}
+.admpanel h2{font-size:16px;margin-bottom:2px}
+.admpanel .p-sub{font-family:var(--ff-m);font-size:10px;color:var(--faint);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+
+.occrow{display:grid;grid-template-columns:1fr 120px 64px;gap:12px;align-items:center;padding:8px 0;border-top:1px solid var(--line);font-size:13.5px}
+.occrow:first-of-type{border-top:none}
+.occrow .track{height:7px;background:var(--sand3);border-radius:1px;overflow:hidden}
+.occrow .fill{height:100%;background:var(--green)}
+.occrow .fill.hot{background:var(--clay)}
+.occrow .pct{font-family:var(--ff-m);font-size:11px;color:var(--muted);text-align:right}
+
+.table{width:100%;border-collapse:collapse}
+.table th{font-family:var(--ff-m);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line2);font-weight:500}
+.table td{padding:12px;border-bottom:1px solid var(--line);font-size:13.8px;vertical-align:middle}
+.table tr:hover td{background:#faf7ee}
+.table .thumbcell{display:flex;gap:12px;align-items:center}
+.table .thumbcell img{width:58px;height:42px;object-fit:cover;border-radius:3px;background:var(--sand3)}
+.table .thumbcell .avatar{flex:none}
+.table .thumbcell b{display:block;font-size:14px}
+.table .thumbcell .mono{font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.table .num{font-family:var(--ff-m);font-size:12.5px}
+.table .acts{display:flex;gap:8px;justify-content:flex-end}
+.admtoolbar{display:flex;gap:12px;align-items:center;margin-bottom:16px}
+.admtoolbar .inp{max-width:300px}
+.admtoolbar .spacer{flex:1}
+.admtoolbar .cnt{font-family:var(--ff-m);font-size:11px;color:var(--muted);letter-spacing:.04em}
+
+.seatbar{display:flex;align-items:center;gap:9px}
+.seatbar .track{width:64px;height:6px;background:var(--sand3);border-radius:1px;overflow:hidden}
+.seatbar .fill{height:100%;background:var(--green)}
+
+.tripform{display:grid;grid-template-columns:1fr 360px;gap:34px;align-items:start}
+.prevbox{position:sticky;top:30px}
+.prevbox .t{font-family:var(--ff-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.prevbox .note{font-family:var(--ff-m);font-size:10px;color:var(--faint);margin-top:12px;line-height:1.8;letter-spacing:.02em}
+
+@media (max-width:1080px){
+  .statgrid{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(4n){border-right:1px solid var(--line)}
+  .stat:nth-child(2n){border-right:none}
+  .stat:nth-child(n+5){border-bottom:1px solid var(--line)}
+  .stat:nth-child(n+7){border-bottom:none}
+  .admgrid2{grid-template-columns:1fr}
+  .tripform{grid-template-columns:1fr}
+  .prevbox{position:static;max-width:400px}
+}
+@media (max-width:620px){
+  .statgrid{grid-template-columns:1fr}
+  .stat{border-right:none!important;border-bottom:1px solid var(--line)!important}
+  .stat:last-child{border-bottom:none!important}
+}
