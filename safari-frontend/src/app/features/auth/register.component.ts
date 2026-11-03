@@ -15,7 +15,7 @@ import { LOGO_SVG } from '../../shared/ui/util/display.util';
     <div class="auth">
       <div class="pane">
         <a class="logoInline" routerLink="/" [innerHTML]="logo"></a>
-        <div class="overline">Join Voyage</div>
+        <div class="overline">Join Safari</div>
         <h1>Create your account</h1>
         <p class="lead">Free to join. Reserve seats with no payment today.</p>
         @if (bannerErr()) { <div class="banner err">{{ bannerErr() }}</div> }
@@ -89,7 +89,7 @@ export class RegisterComponent {
   private fb = inject(FormBuilder);
   private toast = inject(ToastService);
 
-  protected logo = LOGO_SVG + 'Voyage';
+  protected logo = LOGO_SVG + 'Safari';
   protected returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '';
   protected bannerErr = signal<string | null>(null);
   protected submitting = signal(false);

@@ -125,8 +125,8 @@ export class ExploreComponent implements OnInit {
     if (v.destination) chips.push({ field: 'destination', label: 'Destination: ' + v.destination });
     if (v.country) chips.push({ field: 'country', label: v.country });
     if (v.category) chips.push({ field: 'category', label: v.category });
-    if (v.minPrice) chips.push({ field: 'minPrice', label: 'From $' + Number(v.minPrice).toLocaleString() });
-    if (v.maxPrice) chips.push({ field: 'maxPrice', label: 'Up to $' + Number(v.maxPrice).toLocaleString() });
+    if (v.minPrice) chips.push({ field: 'minPrice', label: 'From ' + Number(v.minPrice).toLocaleString() + ' DH' });
+    if (v.maxPrice) chips.push({ field: 'maxPrice', label: 'Up to ' + Number(v.maxPrice).toLocaleString() + ' DH' });
     return chips;
   });
 }

@@ -1,13 +1,13 @@
 # SafariHub — Travel Booking Platform
 
-A full-stack travel booking application: a Spring Boot REST API (`Safari-backend`) serving an Angular SPA (`safari-frontend`, branded **"Voyage"**). Users browse trips, book reservations, leave reviews and save favourites; admins manage trips and users from a dedicated dashboard.
+A full-stack travel booking application: a Spring Boot REST API (`Safari-backend`) serving an Angular SPA (`safari-frontend`, branded **"Safari"**). Users browse trips, book reservations, leave reviews and save favourites; admins manage trips and users from a dedicated dashboard.
 
 ## Repository Layout
 
 ```
 SafariHub/
 ├── Safari-backend/     # Spring Boot 3 REST API (Java 17, MySQL, JWT)
-└── safari-frontend/    # Angular 18 SPA ("Voyage")
+└── safari-frontend/    # Angular 18 SPA ("Safari")
 ```
 
 ## Tech Stack

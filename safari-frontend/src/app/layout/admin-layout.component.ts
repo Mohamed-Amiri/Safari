@@ -20,7 +20,7 @@ import { LOGO_SVG } from '../shared/ui/util/display.util';
           <a routerLink="/admin/users" routerLinkActive="on">Users</a>
         </nav>
         <div class="bottom">
-          <div>{{ me()?.fullName ?? 'Voyage admin' }}</div>
+          <div>{{ me()?.fullName ?? 'Safari admin' }}</div>
           <div class="mono">{{ me()?.role ?? '' }}</div>
           <div style="margin-top:10px"><a routerLink="/">← Back to site</a></div>
         </div>
@@ -54,6 +54,6 @@ import { LOGO_SVG } from '../shared/ui/util/display.util';
 })
 export class AdminLayoutComponent {
   private auth = inject(AuthService);
-  protected logo = LOGO_SVG + 'Voyage';
+  protected logo = LOGO_SVG + 'Safari';
   protected me = computed(() => this.auth.user());
 }

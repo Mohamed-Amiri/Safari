@@ -1,5 +1,5 @@
 /** Domain + envelope interfaces for the SafariHub API backend (the frontend app itself is
- *  branded "Voyage"), per FRONTEND_BACKEND_HANDOFF.md §3. */
+ *  branded "Safari"), per FRONTEND_BACKEND_HANDOFF.md §3. */
 
 export type UserRole = 'ROLE_USER' | 'ROLE_ADMIN';
 export type ReservationStatus = 'CONFIRMED' | 'CANCELLED';

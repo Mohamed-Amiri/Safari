@@ -58,25 +58,25 @@ public class DataSeeder implements CommandLineRunner {
 
         tripRepository.saveAll(List.of(
                 createTrip("Marrakech", "Explore the vibrant souks and palaces",
-                        "Morocco", new BigDecimal("1999.00"),
+                        "Morocco", new BigDecimal("20090.00"),
                         LocalDate.of(2026, 11, 10), LocalDate.of(2026, 11, 17),
-                        30, "https://images.unsplash.com/photo-1597212618440-806262de4f6b", "Cultural"),
+                        30, "/trips/marrakech.jpg", "Cultural"),
                 createTrip("Chefchaouen", "Discover the blue pearl of Morocco",
-                        "Morocco", new BigDecimal("1499.00"),
+                        "Morocco", new BigDecimal("15140.00"),
                         LocalDate.of(2026, 12, 5), LocalDate.of(2026, 12, 10),
-                        20, "https://images.unsplash.com/photo-1553264710-39a43864d851", "Adventure"),
+                        20, "/trips/chefchaouen.jpg", "Adventure"),
                 createTrip("Merzouga Desert", "Sahara desert camping under the stars",
-                        "Morocco", new BigDecimal("2299.00"),
+                        "Morocco", new BigDecimal("23220.00"),
                         LocalDate.of(2027, 1, 20), LocalDate.of(2027, 1, 26),
-                        15, "https://images.unsplash.com/photo-1489493887464-892be6d1daae", "Adventure"),
+                        15, "/trips/merzouga.jpg", "Adventure"),
                 createTrip("Fes", "Walk through the world's largest car-free urban area",
-                        "Morocco", new BigDecimal("1799.00"),
+                        "Morocco", new BigDecimal("18160.00"),
                         LocalDate.of(2027, 3, 1), LocalDate.of(2027, 3, 6),
-                        25, "https://images.unsplash.com/photo-1579019163242-e977f715c015", "Cultural"),
+                        25, "/trips/fes.jpg", "Cultural"),
                 createTrip("Essaouira", "Coastal getaway with windsurfing and medina visits",
-                        "Morocco", new BigDecimal("1299.00"),
+                        "Morocco", new BigDecimal("13110.00"),
                         LocalDate.of(2027, 4, 15), LocalDate.of(2027, 4, 20),
-                        40, "https://images.unsplash.com/photo-1548820515-5d79db908e5c", "Relaxation")
+                        40, "/trips/essaouira.jpg", "Relaxation")
         ));
 
         log.info("Sample trips seeded.");

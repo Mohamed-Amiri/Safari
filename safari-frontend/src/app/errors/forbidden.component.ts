@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
       <div class="bigcode">
         <div class="code">403</div>
         <h2>This area needs an admin account</h2>
-        <p>You're signed in as a traveler. The admin console is reserved for Voyage staff.</p>
+        <p>You're signed in as a traveler. The admin console is reserved for Safari staff.</p>
         <a class="btn btn-primary" routerLink="/">Back to Explore</a>
       </div>
     </div>

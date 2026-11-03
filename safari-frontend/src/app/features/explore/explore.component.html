@@ -2,7 +2,7 @@
   <div class="bg"></div>
   <div class="scrim"></div>
   <div class="wrap">
-    <div class="kicker">Curated small-group travel · Est. 2024</div>
+    <div class="kicker">Curated small-group travel · Est. 2026</div>
     <h1>Find your next trip. Reserve your seat today.</h1>
     <p class="sub">Small-group journeys to destinations worth the journey, with live seat availability and free cancellation on every booking.</p>
     <form class="searchbar" [formGroup]="filters" (ngSubmit)="load(); scrollToResults()">
@@ -16,9 +16,9 @@
       <div class="cell"><label for="hs-max">Budget / person</label>
         <select id="hs-max" formControlName="maxPrice">
           <option value="">Any budget</option>
-          <option value="2500">Up to $2,500</option>
-          <option value="3500">Up to $3,500</option>
-          <option value="5000">Up to $5,000</option>
+          <option value="25000">Up to 25,000 DH</option>
+          <option value="35000">Up to 35,000 DH</option>
+          <option value="50000">Up to 50,000 DH</option>
         </select>
       </div>
       <button class="btn btn-cta go" type="submit">Search trips</button>
@@ -58,7 +58,7 @@
       </div>
 
       <div class="fgroup">
-        <div class="ftitle">Price per person (USD · MAD shown)</div>
+        <div class="ftitle">Price per person (MAD)</div>
         <div class="pricerow">
           <input class="inp" type="number" min="0" formControlName="minPrice" placeholder="Min">
           <span>—</span>
@@ -71,7 +71,7 @@
       <div class="results-head">
         <div>
           <h2>Available trips</h2>
-          <div class="cnt">{{ totalElements }} TRIP{{ totalElements === 1 ? '' : 'S' }} · PRICES IN USD PER PERSON (MAD SHOWN)</div>
+          <div class="cnt">{{ totalElements }} TRIP{{ totalElements === 1 ? '' : 'S' }} · PRICES IN MAD PER PERSON</div>
         </div>
         <div style="display:flex;gap:10px;align-items:center">
           <button class="btn btn-ghost btn-sm filter-toggle" type="button" (click)="toggleFilters()">Filters</button>

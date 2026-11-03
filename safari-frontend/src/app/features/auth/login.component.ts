@@ -15,7 +15,7 @@ import { LOGO_SVG } from '../../shared/ui/util/display.util';
       <div class="pane">
         <a class="logoInline" routerLink="/" [innerHTML]="logo"></a>
         <div class="overline">Welcome back</div>
-        <h1>Sign in to Voyage</h1>
+        <h1>Sign in to Safari</h1>
         <p class="lead">Your bookings, saved trips and reviews live here.</p>
         @if (flash()) { <div class="banner info">{{ flash() }}</div> }
         @if (bannerErr()) { <div class="banner err">{{ bannerErr() }}</div> }
@@ -35,7 +35,7 @@ import { LOGO_SVG } from '../../shared/ui/util/display.util';
           </div>
           <button class="btn btn-primary btn-block" type="submit" [disabled]="submitting()">Sign in</button>
         </form>
-        <p class="authswap">New to Voyage? <a routerLink="/register">Create a free account</a></p>
+        <p class="authswap">New to Safari? <a routerLink="/register">Create a free account</a></p>
       </div>
       <div class="photo">
         <div class="scrim"></div>
@@ -75,7 +75,7 @@ export class LoginComponent {
   private router = inject(Router);
   private fb = inject(FormBuilder);
 
-  protected logo = LOGO_SVG + 'Voyage';
+  protected logo = LOGO_SVG + 'Safari';
   protected returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '';
   protected flash = signal<string | null>(this.route.snapshot.queryParamMap.get('flash'));
   protected bannerErr = signal<string | null>(null);

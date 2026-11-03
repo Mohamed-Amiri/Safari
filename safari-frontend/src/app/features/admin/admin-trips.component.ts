@@ -44,7 +44,7 @@ import { IsoDateShortPipe } from '../../shared/ui/pipes/date.pipe';
                 <tr>
                   <td>
                     <div class="thumbcell">
-                      <img [src]="t.imageUrl || ''" alt="" appImageFallback>
+                      <img [src]="t.imageUrl || ''" [alt]="t.destination" appImageFallback>
                       <div><b>{{ t.destination }}</b><span class="mono">{{ t.country || '—' }} · №{{ (t.id).toString().padStart(3, '0') }}</span></div>
                     </div>
                   </td>

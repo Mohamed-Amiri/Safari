@@ -3,7 +3,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../core/auth/auth.service';
 import { LOGO_SVG } from '../shared/ui/util/display.util';
 
-/** Public site header — logo "Voyage", primary nav, account avatar menu, admin link,
+/** Public site header — logo "Safari", primary nav, account avatar menu, admin link,
  *  guest sign-in CTAs. Mirrors header() in the prototype's 03-app.js. */
 @Component({
   selector: 'app-header',
@@ -87,7 +87,7 @@ import { LOGO_SVG } from '../shared/ui/util/display.util';
 export class HeaderComponent {
   protected auth = inject(AuthService);
   protected menuOpen = signal(false);
-  protected logo = LOGO_SVG + 'Voyage';
+  protected logo = LOGO_SVG + 'Safari';
   protected user = computed(() => this.auth.user());
 
   protected initials(): string {

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LOGO_SVG } from '../shared/ui/util/display.util';
 
-/** Public footer — "Voyage" wordmark, Explore category quick-links, account + support,
+/** Public footer — "Safari" wordmark, Explore category quick-links, account + support,
  *  base line. Some support links are non-functional (matching the prototype's `data-act="nope"`). */
 @Component({
   selector: 'app-footer',
@@ -15,7 +15,7 @@ import { LOGO_SVG } from '../shared/ui/util/display.util';
           <div>
             <a class="logo" routerLink="/" [innerHTML]="logo"></a>
             <p class="tag">A modern travel agency for everywhere worth going. Real availability, transparent pricing, and seats you can reserve in seconds.</p>
-            <div class="coords">EST. 2024 · SMALL-GROUP TRAVEL, WORLDWIDE</div>
+            <div class="coords">EST. 2026 · SMALL-GROUP TRAVEL, WORLDWIDE</div>
           </div>
           <div>
             <h4>Explore</h4>
@@ -48,8 +48,8 @@ import { LOGO_SVG } from '../shared/ui/util/display.util';
           </div>
         </div>
         <div class="base">
-          <span>© 2026 Voyage — Your next trip, reserved</span>
-          <span>Live seat availability · Prices in USD (MAD shown)</span>
+          <span>© 2026 Safari — Your next trip, reserved</span>
+          <span>Live seat availability · Prices in MAD per person</span>
         </div>
       </div>
     </footer>
@@ -72,5 +72,5 @@ import { LOGO_SVG } from '../shared/ui/util/display.util';
   `]
 })
 export class FooterComponent {
-  protected logo = LOGO_SVG + 'Voyage';
+  protected logo = LOGO_SVG + 'Safari';
 }

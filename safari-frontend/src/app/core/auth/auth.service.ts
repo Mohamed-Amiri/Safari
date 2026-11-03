@@ -4,9 +4,9 @@ import { lastValueFrom } from 'rxjs';
 import { ApiService } from '../api/api.service';
 import { AuthResponse, ChangePasswordRequest, LoginRequest, ProfileRequest, RegisterRequest, User } from '../models/models';
 
-const TOKEN_KEY = 'voyage_token';
-const USER_KEY = 'voyage_user';
-const EXPIRY_KEY = 'voyage_expiry';
+const TOKEN_KEY = 'safari_token';
+const USER_KEY = 'safari_user';
+const EXPIRY_KEY = 'safari_expiry';
 
 /**
  * Session store + auth API client. Holds token, expiry, and the decoded user in

@@ -46,7 +46,7 @@ import { EmptyStateComponent } from '../../shared/ui/empty-state/empty-state.com
           } @else {
             @for (r of visible(); track r.id) {
               <div class="resrow">
-                <img class="thumb" [src]="r.trip.imageUrl || ''" alt="" appImageFallback>
+                <img class="thumb" [src]="r.trip.imageUrl || ''" [alt]="r.trip.destination" appImageFallback>
                 <div>
                   <h3><a routerLink="/trips/{{ r.trip.id }}">{{ r.trip.destination }}</a></h3>
                   <div class="rmeta">REF {{ ref(r.id) }} · {{ r.trip.country || '' }} · TRAVEL {{ r.reservationDate | isoDate }} · BOOKED {{ r.createdAt | isoDateTime }}</div>

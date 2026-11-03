@@ -66,7 +66,7 @@ import { MoneyPipe } from '../../shared/ui/pipes/money.pipe';
                 <tr>
                   <td>
                     <div class="thumbcell">
-                      <img [src]="t.imageUrl || ''" alt="" appImageFallback>
+                      <img [src]="t.imageUrl || ''" [alt]="t.destination" appImageFallback>
                       <div><b>{{ t.destination }}</b><span class="mono">{{ t.country || '—' }}</span></div>
                     </div>
                   </td>
