@@ -1,3 +1,3 @@
 export const environment = {
-    apiBaseUrl: 'https://safaribackend.vercel.app/api/v1'
+    apiBaseUrl: 'https://safari-backend-10137850854.development.catalystappsail.com/api/v1'
 };
