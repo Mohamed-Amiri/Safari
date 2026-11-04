@@ -1,6 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "outputDirectory": "dist/safari-frontend/browser",
-  "rewrites": [{ "source": "/api/:path*", 
-"destination": "https://safari-backend-10137850854.development.catalystappsail.com/api/:path*"}]
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://safari-backend-10137850854.development.catalystappsail.com/api/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
+
+
